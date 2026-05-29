@@ -64,6 +64,7 @@ from .const import (
     MODELS_HUMIDIFIER_MJJSQ,
     MODELS_LIGHT,
     MODELS_PURIFIER_MIOT,
+    MODELS_PURIFIER_MIOT_ALIASES,
     MODELS_SWITCH,
     MODELS_VACUUM,
     ROBOROCK_GENERIC,
@@ -343,7 +344,12 @@ async def async_create_miio_device_and_coordinator(
         migrate = True
     # Airpurifiers and Airfresh
     elif model in MODELS_PURIFIER_MIOT:
-        device = AirPurifierMiot(host, token, lazy_discover=lazy_discover)
+        device = AirPurifierMiot(
+            host,
+            token,
+            lazy_discover=lazy_discover,
+            model=MODELS_PURIFIER_MIOT_ALIASES.get(model, model),
+        )
     elif model.startswith("zhimi.airpurifier."):
         device = AirPurifier(host, token, lazy_discover=lazy_discover)
     elif model.startswith("zhimi.airfresh."):

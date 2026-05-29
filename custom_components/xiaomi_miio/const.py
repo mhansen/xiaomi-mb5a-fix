@@ -46,6 +46,7 @@ class SetupException(Exception):
 
 # Fan Models
 MODEL_AIRPURIFIER_4 = "zhimi.airp.mb5"
+MODEL_AIRPURIFIER_4_REV_A = "zhimi.airp.mb5a"
 MODEL_AIRPURIFIER_4_LITE_RMA1 = "zhimi.airpurifier.rma1"
 MODEL_AIRPURIFIER_4_LITE_RMB1 = "zhimi.airp.rmb1"
 MODEL_AIRPURIFIER_4_PRO = "zhimi.airp.vb4"
@@ -127,9 +128,17 @@ MODELS_PURIFIER_MIOT = [
     MODEL_AIRPURIFIER_4_LITE_RMA1,
     MODEL_AIRPURIFIER_4_LITE_RMB1,
     MODEL_AIRPURIFIER_4,
+    MODEL_AIRPURIFIER_4_REV_A,
     MODEL_AIRPURIFIER_4_PRO,
     MODEL_AIRPURIFIER_ZA1,
 ]
+
+# Maps hardware variant model strings to their python-miio equivalent.
+# Used for models not yet in python-miio's MIoT property mapping table
+# that share the same protocol/properties as their base model.
+MODELS_PURIFIER_MIOT_ALIASES: dict[str, str] = {
+    MODEL_AIRPURIFIER_4_REV_A: MODEL_AIRPURIFIER_4,
+}
 MODELS_PURIFIER_MIIO = [
     MODEL_AIRPURIFIER_V1,
     MODEL_AIRPURIFIER_V2,
